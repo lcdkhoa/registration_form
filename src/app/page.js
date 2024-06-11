@@ -12,7 +12,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { ThemeProvider, useTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useRef, useState } from "react";
@@ -21,12 +21,15 @@ import { classTable, initialFormData } from "@/app/constants";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
+import { DateField } from "@mui/x-date-pickers/DateField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs from "dayjs";
 
 const App = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [classInformation, setClassInformation] = useState([]);
 
-  const themes = useTheme();
   const formRef = useRef(null);
   const isMobileDevice = useMediaQuery({ maxWidth: 900 });
 
@@ -34,7 +37,6 @@ const App = () => {
     const className = e.target.name;
     const classInfo = classTable.find((item) => item.class === e.target.value);
     setClassInformation(classInfo?.classInformation || []);
-    console.log("Class: ", e.target);
     className === "class" // TODOS: Reset form data when class is changed
       ? setFormData({
           ...formData,
@@ -186,7 +188,7 @@ const App = () => {
               <TextField
                 variant="standard"
                 fullWidth
-                label="Tên HV / Full name"
+                label="Tên học viên / Student's full name"
                 margin="normal"
                 name="fullName"
                 value={formData.fullName}
@@ -195,27 +197,40 @@ const App = () => {
                 error={formData.fullName === ""}
                 helperText={
                   formData.fullName === "" &&
-                  "Vui lòng nhập tên học viên / Please enter student name"
-                }
-              />
-              <TextField
-                variant="standard"
-                fullWidth
-                label="Ngày sinh / DOB"
-                margin="normal"
-                name="dob"
-                value={formData.dob}
-                onChange={handleChange}
-                required
-                error={formData.dob === ""}
-                helperText={
-                  formData.dob === "" &&
-                  "Vui lòng nhập ngày sinh / Please enter date of birth"
+                  "Vui lòng nhập tên học viên / Please enter student's name"
                 }
               />
 
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateField
+                  variant="standard"
+                  fullWidth
+                  label="Ngày sinh / Date of birth"
+                  margin="normal"
+                  name="dob"
+                  value={
+                    formData.dob ? dayjs(formData.dob, "DD/MM/YYYY") : null
+                  }
+                  onChange={(newValue) =>
+                    handleChange({
+                      target: {
+                        name: "dob",
+                        value: newValue ? newValue.format("DD/MM/YYYY") : "",
+                      },
+                    })
+                  }
+                  required
+                  error={formData.dob === ""}
+                  helperText={
+                    formData.dob === "" &&
+                    "Vui lòng nhập ngày sinh / Please enter date of birth"
+                  }
+                  format="DD/MM/YYYY"
+                />
+              </LocalizationProvider>
+
               <FormControl component="fieldset" margin="normal">
-                <FormLabel component="legend">Giới tính / Sex</FormLabel>
+                <FormLabel component="legend">Giới tính / Gender</FormLabel>
                 <RadioGroup
                   row
                   aria-label="gender"

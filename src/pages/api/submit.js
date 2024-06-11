@@ -38,7 +38,7 @@ export default async function handler(req, res) {
       input.classDuration,
     ];
 
-    connection.query(sql, values, function (error, results, fields) {
+    connection.query(sql, values, function (error, results) {
       if (error) {
         res
           .status(500)

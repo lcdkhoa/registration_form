@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import PropTypes from "prop-types";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,3 +15,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
