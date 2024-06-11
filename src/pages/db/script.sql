@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `formdangky`;
 CREATE TABLE `formdangky` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,  
     `fullName` VARCHAR(255) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' DEFAULT NULL,
-    `dob` DATE,                           
+    `dob` VARCHAR(10) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' DEFAULT NULL,                           
     `gender` ENUM('Male', 'Female', 'Other'), 
     `address` VARCHAR(255) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' DEFAULT NULL,
     `parentName` VARCHAR(255) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' DEFAULT NULL,
