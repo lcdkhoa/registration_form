@@ -21,7 +21,7 @@ import { DateField } from "@mui/x-date-pickers/DateField";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+// import jsPDF from "jspdf";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -95,23 +95,32 @@ const App = () => {
     const formElement = document.getElementById("main");
 
     // Capture the form using html2canvas
-    const canvas = await html2canvas(formElement, { scale: 0.8 });
+    const canvas = await html2canvas(formElement, { scale: 1 });
     const imgData = canvas.toDataURL("image/png");
 
-    const imgWidth = canvas.width / 2;
-    const imgHeight = canvas.height / 2;
+    // const imgWidth = canvas.width / 2;
+    // const imgHeight = canvas.height / 2;
 
     // Create a new jsPDF document with custom dimensions
-    const pdf = new jsPDF({
-      orientation: "p",
-      unit: "px",
-      format: [imgWidth, imgHeight],
-    });
+    // const pdf = new jsPDF({
+    //   orientation: "p",
+    //   unit: "px",
+    //   format: [imgWidth, imgHeight],
+    // });
 
-    // Add the image to the PDF
-    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    // // Add the image to the PDF
+    // pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
 
-    pdf.save("form-data.pdf");
+    // pdf.save("form-data.pdf");
+    const name = formData.fullName.replace(/\s/g, "").toLowerCase();
+    const className = formData.className.replace(/\s/g, "_").toLowerCase();
+    const today = dayjs().format("DDMMYYYY");
+    const fileName = `${name}_${className}_${today}`;
+
+    const link = document.createElement("a");
+    link.download = `${fileName}.png`;
+    link.href = imgData;
+    link.click();
   };
 
   return (
@@ -481,6 +490,15 @@ const App = () => {
                   fontWeight={700}
                   color={theme.palette.text.primary}
                 >
+                  ========= *** =========
+                </Typography>
+              </Grid>
+              <Grid item container xs={12} style={{ justifyContent: "center" }}>
+                <Typography
+                  variant={isMobileDevice ? "h7" : "h6"}
+                  fontWeight={700}
+                  color={theme.palette.text.primary}
+                >
                   THÔNG TIN PHIẾU GHI DANH
                 </Typography>
               </Grid>
@@ -701,6 +719,21 @@ const App = () => {
                   tháng, nếu học viên không tiếp tục học thì học phí sẽ{" "}
                   <strong>không</strong> được hoàn lại.
                 </Typography>
+
+                <Grid
+                  item
+                  container
+                  xs={12}
+                  style={{ justifyContent: "center" }}
+                >
+                  <Typography
+                    variant={isMobileDevice ? "h7" : "h6"}
+                    fontWeight={700}
+                    color={theme.palette.text.primary}
+                  >
+                    =======================
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
