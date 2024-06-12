@@ -268,6 +268,7 @@ const App = () => {
                 <DatePicker
                   label="Ngày sinh / Date of birth"
                   name="dob"
+                  format="DD/MM/YYYY"
                   value={
                     formData.dob ? dayjs(formData.dob, "DD/MM/YYYY") : null
                   }
