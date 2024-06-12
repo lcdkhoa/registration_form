@@ -1,14 +1,18 @@
 "use client";
 import { Fab } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { classTable, initialFormData } from "@/app/constants";
+import {
+  classTable,
+  initialFormData,
+  MAX_DATE,
+  MIN_DATE,
+} from "@/app/constants";
 import { theme } from "@/styles/theme";
 import {
   Button,
   Container,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Grid,
   MenuItem,
   Radio,
@@ -18,7 +22,8 @@ import {
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateField } from "@mui/x-date-pickers/DateField";
+import { DatePicker } from "@mui/x-date-pickers";
+
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import html2canvas from "html2canvas";
@@ -28,12 +33,14 @@ import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Loading from "@/components/loading";
 import Success from "@/components/success";
+import Fail from "@/components/fail";
 
 const App = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [classInformation, setClassInformation] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
+  const [openFail, setOpenFail] = useState(false);
   const [user, setUser] = useState("");
 
   const formRef = useRef(null);
@@ -95,6 +102,7 @@ const App = () => {
       });
 
       if (!response.ok) {
+        setOpenFail(true);
         throw new Error("Network response was not ok");
       }
 
@@ -228,7 +236,7 @@ const App = () => {
                 }
               />
 
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateField
                   variant="standard"
                   fullWidth
@@ -254,10 +262,50 @@ const App = () => {
                   }
                   format="DD/MM/YYYY"
                 />
+              </LocalizationProvider> */}
+
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Ngày sinh / Date of birth"
+                  name="dob"
+                  value={
+                    formData.dob ? dayjs(formData.dob, "DD/MM/YYYY") : null
+                  }
+                  onChange={(newValue) =>
+                    handleChange({
+                      target: {
+                        name: "dob",
+                        value: newValue ? newValue.format("DD/MM/YYYY") : "",
+                      },
+                    })
+                  }
+                  slotProps={{
+                    textField: {
+                      fullWidth: true,
+                      variant: "standard",
+                      required: true,
+                      error: formData.dob === "",
+                      helperText:
+                        formData.dob === "" &&
+                        "Vui lòng nhập ngày sinh / Please enter date of birth",
+                    },
+                  }}
+                  sx={{ marginTop: "16px", marginBottom: "8px" }}
+                  maxDate={dayjs(MAX_DATE)}
+                  minDate={dayjs(MIN_DATE)}
+                />
               </LocalizationProvider>
 
-              <FormControl component="fieldset" margin="normal">
-                <FormLabel component="legend">Giới tính / Gender</FormLabel>
+              <FormControl
+                component="fieldset"
+                margin="normal"
+                fullWidth
+                sx={{
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                }}
+              >
+                {/* <FormLabel component="legend">Giới tính / Gender</FormLabel> */}
                 <RadioGroup
                   row
                   aria-label="gender"
@@ -277,7 +325,6 @@ const App = () => {
                   />
                 </RadioGroup>
               </FormControl>
-
               <TextField
                 variant="standard"
                 fullWidth
@@ -774,6 +821,7 @@ const App = () => {
             handleClose: setOpenSuccess,
             user: user,
           })}
+        {openFail && Fail({ open: openFail, handleClose: setOpenFail })}
         <Fab
           color="primary"
           aria-label="scroll back to top"
