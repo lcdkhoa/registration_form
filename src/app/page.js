@@ -1,5 +1,6 @@
 "use client";
-
+import { Fab } from "@mui/material";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { classTable, initialFormData } from "@/app/constants";
 import { theme } from "@/styles/theme";
 import {
@@ -25,13 +26,25 @@ import html2canvas from "html2canvas";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import Loading from "@/components/loading";
+import Success from "@/components/success";
 
 const App = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [classInformation, setClassInformation] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [user, setUser] = useState("");
 
   const formRef = useRef(null);
   const isMobileDevice = useMediaQuery({ maxWidth: 900 });
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const handleChange = (e) => {
     const className = e.target.name;
@@ -70,6 +83,7 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setOpen(true);
 
     try {
       const response = await fetch("/api/submit", {
@@ -85,6 +99,10 @@ const App = () => {
       }
 
       await generatePDF();
+      setOpen(false);
+      setOpenSuccess(true);
+      setUser(formData.fullName);
+      setFormData({ ...initialFormData });
     } catch (error) {
       console.error("Error: ", error);
     }
@@ -749,6 +767,21 @@ const App = () => {
             </Button>
           </Grid>
         </Container>
+        {open && Loading({ open })}
+        {openSuccess &&
+          Success({
+            open: openSuccess,
+            handleClose: setOpenSuccess,
+            user: user,
+          })}
+        <Fab
+          color="primary"
+          aria-label="scroll back to top"
+          onClick={scrollToTop}
+          style={{ position: "fixed", bottom: "16px", right: "16px" }}
+        >
+          <ArrowUpwardIcon />
+        </Fab>
       </ThemeProvider>
     </form>
   );
