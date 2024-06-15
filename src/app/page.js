@@ -1,5 +1,5 @@
 "use client";
-import { Fab } from "@mui/material";
+import { Fab, GlobalStyles } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import {
   classTable,
@@ -24,7 +24,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import {
+  LocalizationProvider,
+  viVN,
+} from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import html2canvas from "html2canvas";
 // import jsPDF from "jspdf";
@@ -34,6 +37,47 @@ import { useMediaQuery } from "react-responsive";
 import Loading from "@/components/loading";
 import Success from "@/components/success";
 import Fail from "@/components/fail";
+import "dayjs/locale/vi";
+
+dayjs.locale("vi");
+
+const CustomGlobalStyles = () => (
+  <GlobalStyles
+    styles={{
+      ".MuiDayCalendar-weekDayLabel": {
+        visibility: "hidden",
+        position: "relative",
+      },
+      ".MuiDayCalendar-weekDayLabel::after": {
+        content: "attr(aria-label)",
+        visibility: "visible",
+        position: "absolute",
+      },
+      // Apply the custom labels
+      '.MuiDayCalendar-weekDayLabel[aria-label="thứ hai"]::after': {
+        content: '"T2"',
+      },
+      '.MuiDayCalendar-weekDayLabel[aria-label="thứ ba"]::after': {
+        content: '"T3"',
+      },
+      '.MuiDayCalendar-weekDayLabel[aria-label="thứ tư"]::after': {
+        content: '"T4"',
+      },
+      '.MuiDayCalendar-weekDayLabel[aria-label="thứ năm"]::after': {
+        content: '"T5"',
+      },
+      '.MuiDayCalendar-weekDayLabel[aria-label="thứ sáu"]::after': {
+        content: '"T6"',
+      },
+      '.MuiDayCalendar-weekDayLabel[aria-label="thứ bảy"]::after': {
+        content: '"T7"',
+      },
+      '.MuiDayCalendar-weekDayLabel[aria-label="chủ nhật"]::after': {
+        content: '"CN"',
+      },
+    }}
+  />
+);
 
 const App = () => {
   const [formData, setFormData] = useState(initialFormData);
@@ -264,7 +308,12 @@ const App = () => {
                 />
               </LocalizationProvider> */}
 
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+                adapterLocale="vi"
+                locale={viVN}
+              >
+                <CustomGlobalStyles />
                 <DatePicker
                   label="Ngày sinh / Date of birth"
                   name="dob"
@@ -280,6 +329,9 @@ const App = () => {
                       },
                     })
                   }
+                  // renderDay={(day, _value, DayComponentProps) => (
+                  //   <PickersDay {...DayComponentProps} day={day} />
+                  // )}
                   slotProps={{
                     textField: {
                       fullWidth: true,
