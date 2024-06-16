@@ -120,6 +120,18 @@ const App = () => {
         });
   };
 
+  const handlePhoneNumberChange = (e) => {
+    const { value, name } = e.target;
+    const maxLength = 10;
+    const allowedValues = /^[0-9]*$/;
+
+    if (value.length > maxLength || !allowedValues.test(value)) {
+      e.preventDefault();
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
   const handleSelectChange = (e) => {
     const classInfo = classInformation.find(
       (item) => item.className === e.target.value
@@ -409,7 +421,7 @@ const App = () => {
                 margin="normal"
                 name="parentName"
                 value={formData.parentName}
-                onChange={handleChange}
+                onChange={handlePhoneNumberChange}
                 required
                 error={formData.parentName === ""}
                 helperText={
@@ -424,12 +436,14 @@ const App = () => {
                 margin="normal"
                 name="phone1"
                 value={formData.phone1}
-                onChange={handleChange}
+                onChange={handlePhoneNumberChange}
                 required
-                error={formData.phone1 === ""}
+                error={formData.phone1 === "" || formData.phone1.length < 10}
                 helperText={
-                  formData.phone1 === "" &&
-                  "Vui lòng nhập số điện thoại / Please enter phone number"
+                  (formData.phone1 === "" &&
+                    "Vui lòng nhập số điện thoại / Please enter phone number") ||
+                  (formData.phone1.length < 10 &&
+                    "Số điện thoại không hợp lệ / Phone number is invalid")
                 }
               />
 
@@ -440,7 +454,13 @@ const App = () => {
                 margin="normal"
                 name="phone2"
                 value={formData.phone2}
-                onChange={handleChange}
+                onChange={handlePhoneNumberChange}
+                error={formData.phone2.length < 10 && formData.phone2 !== ""}
+                helperText={
+                  formData.phone2.length < 10 &&
+                  formData.phone2 !== "" &&
+                  "Số điện thoại không hợp lệ / Phone number is invalid"
+                }
               />
 
               <TextField
