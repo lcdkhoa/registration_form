@@ -2,7 +2,7 @@
 import { Fab, GlobalStyles } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import {
-  classTable,
+  ClassTables,
   initialFormData,
   MAX_DATE,
   MIN_DATE,
@@ -24,10 +24,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 
-import {
-  LocalizationProvider,
-  viVN,
-} from "@mui/x-date-pickers/LocalizationProvider";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import html2canvas from "html2canvas";
 // import jsPDF from "jspdf";
@@ -80,6 +77,7 @@ const CustomGlobalStyles = () => (
 );
 
 const App = () => {
+  const [classTable, setClassTable] = useState(ClassTables);
   const [formData, setFormData] = useState(initialFormData);
   const [classInformation, setClassInformation] = useState([]);
   const [open, setOpen] = useState(false);
@@ -167,6 +165,8 @@ const App = () => {
       setOpenSuccess(true);
       setUser(formData.fullName);
       setFormData({ ...initialFormData });
+      setClassInformation([]);
+      setClassTable(ClassTables);
     } catch (error) {
       console.error("Error: ", error);
     }
@@ -323,7 +323,6 @@ const App = () => {
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="vi"
-                locale={viVN}
               >
                 <CustomGlobalStyles />
                 <DatePicker
@@ -502,6 +501,7 @@ const App = () => {
                   classInformation.length === 0 &&
                   "Vui lòng chọn một cấp học / Please select a grade"
                 }
+                value={formData.class || ""}
               >
                 {classTable.map((item) => (
                   <MenuItem key={item.id} value={item.class}>
@@ -524,6 +524,7 @@ const App = () => {
                   formData.className === "" &&
                   "Vui lòng chọn một lớp / Please select a class"
                 }
+                value={formData.className || ""}
               >
                 {classInformation.map((item, index) => (
                   <MenuItem key={index} value={item.className}>

@@ -25,7 +25,7 @@ const classTime845 = "8:45 - 10:15";
 const classTime945 = "9:45 - 11:15";
 const classTime1010 = "10:10 - 11:40";
 
-const classTable = [
+const ClassTables = [
   {
     id: 1,
     class: "Lớp 1",
@@ -220,4 +220,4 @@ const currentYear = new Date().getFullYear();
 const MIN_DATE = new Date(1950, 0, 1);
 const MAX_DATE = new Date(currentYear, 11, 31);
 
-export { classTable, initialFormData, MIN_DATE, MAX_DATE };
+export { ClassTables, initialFormData, MIN_DATE, MAX_DATE };
