@@ -420,7 +420,7 @@ const App = () => {
               <TextField
                 variant="standard"
                 fullWidth
-                label="Số điện thoại 1 / Phone number 1"
+                label="Số điện thoại / Phone number"
                 margin="normal"
                 name="phone1"
                 value={formData.phone1}
@@ -436,7 +436,7 @@ const App = () => {
               <TextField
                 variant="standard"
                 fullWidth
-                label="Số điện thoại 2 / Phone number 2"
+                label="Số điện thoại sử dụng Zalo / Zalo phone number"
                 margin="normal"
                 name="phone2"
                 value={formData.phone2}
