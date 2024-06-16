@@ -421,7 +421,7 @@ const App = () => {
                 margin="normal"
                 name="parentName"
                 value={formData.parentName}
-                onChange={handlePhoneNumberChange}
+                onChange={handleChange}
                 required
                 error={formData.parentName === ""}
                 helperText={
