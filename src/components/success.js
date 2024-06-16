@@ -10,8 +10,14 @@ import {
 
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-const SubmissionConfirmation = ({ open, handleClose, user = "bạn" }) => {
+const SubmissionConfirmation = ({
+  open,
+  handleClose,
+  user = "bạn",
+  handleScroll,
+}) => {
   const onClose = () => {
+    handleScroll();
     handleClose(false);
   };
   return (

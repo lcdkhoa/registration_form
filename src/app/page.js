@@ -894,6 +894,7 @@ const App = () => {
             open: openSuccess,
             handleClose: setOpenSuccess,
             user: user,
+            handleScroll: scrollToTop,
           })}
         {openFail && Fail({ open: openFail, handleClose: setOpenFail })}
         <Fab
