@@ -192,7 +192,7 @@ const ClassTables = [
   },
   {
     id: 12,
-    class: "Lớp 5 - 8: Luyện thi KET - PET",
+    class: "Lớp 5 - 8",
     classInformation: [
       {
         className: "Luyện thi KET",
@@ -206,7 +206,7 @@ const ClassTables = [
   },
   {
     id: 13,
-    class: "Lớp 6 - 10: Pre-IELTS",
+    class: "Lớp 6 - 10",
     classInformation: [
       {
         className: "Pre-IELTS",
