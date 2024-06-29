@@ -18,7 +18,7 @@ const fee1170 = "1.170.000đ /tháng";
 const fee1440 = "1.440.000đ /tháng";
 const fee1850 = "1.850.000đ /tháng";
 
-const classTime47cn = "Thứ 4: 19:00 - 20:30, Thứ 7 & Chủ Nhật: 17:00 - 18:30";
+const classTime47cn = "Thứ 4: 19:00 - 20:30, Thứ 7 & Chủ Nhật: 15:45 - 17:15";
 const classTime14 = "14:00 - 15:30";
 const classTime1545 = "15:45 - 17:15";
 const classTime800 = "8:00 - 9:30";
@@ -146,8 +146,8 @@ const ClassTables = [
     classInformation: [
       {
         className: "Sun 4",
-        classSchedule: "Cập nhật sau",
-        classTime: "Cập nhật sau",
+        classSchedule: "",
+        classTime: "",
         classDuration: duration,
         fee: fee1080,
         classStartDate: "Cập nhật sau",
@@ -160,8 +160,8 @@ const ClassTables = [
     classInformation: [
       {
         className: "B2",
-        classSchedule: "Cập nhật sau",
-        classTime: "Cập nhật sau",
+        classSchedule: "",
+        classTime: "",
         classDuration: duration,
         fee: fee1130,
         classStartDate: "Cập nhật sau",
@@ -174,8 +174,8 @@ const ClassTables = [
     classInformation: [
       {
         className: "Luyện thi IELTs",
-        classSchedule: "Cập nhật sau",
-        classTime: "Cập nhật sau",
+        classSchedule: "",
+        classTime: "",
         classDuration: duration,
         fee: fee1440,
         classStartDate: "Cập nhật sau",
@@ -210,8 +210,8 @@ const ClassTables = [
     classInformation: [
       {
         className: "Pre-IELts",
-        classSchedule: "Cập nhật sau",
-        classTime: "Cập nhật sau",
+        classSchedule: "",
+        classTime: "",
         classDuration: duration,
         fee: fee1000,
         classStartDate: "17/6/2024",
@@ -225,7 +225,7 @@ const ClassTables = [
       {
         className: "Mầm non Hướng Dương",
         classSchedule: "Thứ 3 - 4 - 6",
-        classTime: "Cập nhật sau",
+        classTime: "",
         classDuration: duration2,
         fee: fee220,
         classStartDate: "18/6/2024",
@@ -233,7 +233,7 @@ const ClassTables = [
       {
         className: "Mầm non Tuổi Thơ",
         classSchedule: "Thứ 2 - 3 - 5",
-        classTime: "Cập nhật sau",
+        classTime: "",
         classDuration: duration2,
         fee: fee220,
         classStartDate: "10/6/2024",
@@ -241,7 +241,7 @@ const ClassTables = [
       {
         className: "Mầm non Sen Hồng",
         classSchedule: "Thứ 2 - 5 - 6",
-        classTime: "Cập nhật sau",
+        classTime: "",
         classDuration: duration2,
         fee: fee220,
         classStartDate: "10/6/2024",
