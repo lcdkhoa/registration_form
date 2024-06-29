@@ -1,11 +1,13 @@
 const duration = "90 phút/ buổi, 12 buổi/ tháng";
+const duration2 = "50 phút/ buổi, 12 buổi/ tháng";
 const classSchedule246 = "Thứ 2 - 4 - 6";
 const classSchedule245 = "Thứ 2 - 4 - 5";
 const classSchedule357 = "Thứ 3 - 5 - 7";
 const classScheduleExpress = "Thứ 2 - 4 - 6 - 7 - Chủ Nhật";
-const classSchedule36cn = "Thứ 3 - 6 - Chủ Nhật";
+const classSchedule36cn = "Thứ 3 - 6 - Thứ Bảy";
 const classSchedule47cn = "Thứ 4 - 7 - Chủ Nhật";
 
+const fee220 = "220.000đ /tháng";
 const fee750 = "750.000đ /tháng";
 const fee825 = "825.000đ /tháng";
 const fee900 = "900.000đ /tháng";
@@ -20,10 +22,10 @@ const classTime47cn = "Thứ 4: 19:00 - 20:30, Thứ 7 & Chủ Nhật: 17:00 - 1
 const classTime14 = "14:00 - 15:30";
 const classTime1545 = "15:45 - 17:15";
 const classTime800 = "8:00 - 9:30";
-const classTime830 = "8:30 - 10:00";
+// const classTime830 = "8:30 - 10:00";
 const classTime845 = "8:45 - 10:15";
 const classTime945 = "9:45 - 11:15";
-const classTime1010 = "10:10 - 11:40";
+// const classTime1010 = "10:10 - 11:40";
 
 const ClassTables = [
   {
@@ -50,7 +52,7 @@ const ClassTables = [
         classTime: classTime1545,
         classDuration: duration,
         fee: fee750,
-        classStartDate: "17/6/2024",
+        classStartDate: "10/6/2024",
       },
     ],
   },
@@ -70,26 +72,40 @@ const ClassTables = [
   },
   {
     id: 4,
-    class: "Lớp 4 - 5",
+    class: "Lớp 4",
     classInformation: [
       {
-        className: "Moon 2",
+        className: "Moon 2A",
         classSchedule: classSchedule245,
         classTime: classTime14,
         classDuration: duration,
         fee: fee825,
-        classStartDate: "17/6/2024",
+        classStartDate: "10/6/2024",
       },
     ],
   },
   {
     id: 5,
+    class: "Lớp 5",
+    classInformation: [
+      {
+        className: "Moon 2B",
+        classSchedule: classSchedule246,
+        classTime: classTime945,
+        classDuration: duration,
+        fee: fee825,
+        classStartDate: "Cập nhật sau",
+      },
+    ],
+  },
+  {
+    id: 6,
     class: "Lớp 6",
     classInformation: [
       {
         className: "Sun 1",
         classSchedule: classSchedule357,
-        classTime: classTime1545,
+        classTime: classTime800,
         classDuration: duration,
         fee: fee900,
         classStartDate: "18/6/2024",
@@ -97,13 +113,13 @@ const ClassTables = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     class: "Lớp 7",
     classInformation: [
       {
         className: "Sun 2",
         classSchedule: classSchedule357,
-        classTime: classTime14,
+        classTime: classTime1545,
         classDuration: duration,
         fee: fee1080,
         classStartDate: "18/6/2024",
@@ -111,44 +127,58 @@ const ClassTables = [
     ],
   },
   {
-    id: 7,
-    class: "Lớp 8 - 9",
+    id: 8,
+    class: "Lớp 8",
     classInformation: [
       {
         className: "Sun 3",
-        classSchedule: classSchedule246,
-        classTime: classTime1545,
+        classSchedule: classSchedule357,
+        classTime: classTime945,
         classDuration: duration,
         fee: fee1080,
-        classStartDate: "01/7/2024",
-      },
-    ],
-  },
-  {
-    id: 8,
-    class: "Lớp 10",
-    classInformation: [
-      {
-        className: "B2",
-        classSchedule: classSchedule357,
-        classTime: classTime1545,
-        classDuration: duration,
-        fee: fee1130,
-        classStartDate: "02/7/2024",
+        classStartDate: "Cập nhật sau",
       },
     ],
   },
   {
     id: 9,
+    class: "Lớp 9",
+    classInformation: [
+      {
+        className: "Sun 4",
+        classSchedule: "Cập nhật sau",
+        classTime: "Cập nhật sau",
+        classDuration: duration,
+        fee: fee1080,
+        classStartDate: "Cập nhật sau",
+      },
+    ],
+  },
+  {
+    id: 10,
+    class: "Lớp 10",
+    classInformation: [
+      {
+        className: "B2",
+        classSchedule: "Cập nhật sau",
+        classTime: "Cập nhật sau",
+        classDuration: duration,
+        fee: fee1130,
+        classStartDate: "Cập nhật sau",
+      },
+    ],
+  },
+  {
+    id: 11,
     class: "Lớp 11 - 12",
     classInformation: [
       {
         className: "Luyện thi IELTs",
-        classSchedule: classSchedule357,
-        classTime: classTime830,
+        classSchedule: "Cập nhật sau",
+        classTime: "Cập nhật sau",
         classDuration: duration,
         fee: fee1440,
-        classStartDate: "02/7/2024",
+        classStartDate: "Cập nhật sau",
       },
       {
         className: "IELTs cấp tốc 3 tháng",
@@ -161,8 +191,8 @@ const ClassTables = [
     ],
   },
   {
-    id: 10,
-    class: "Lớp 5 - 8: Luyện thi KET",
+    id: 12,
+    class: "Lớp 5 - 8: Luyện thi KET - PET",
     classInformation: [
       {
         className: "Luyện thi KET 1",
@@ -172,27 +202,49 @@ const ClassTables = [
         fee: fee1170,
         classStartDate: "17/6/2024",
       },
+    ],
+  },
+  {
+    id: 13,
+    class: "Lớp 6 - 10: Pre-IELts",
+    classInformation: [
       {
-        className: "Luyện thi KET 2",
-        classSchedule: classSchedule246,
-        classTime: classTime945,
+        className: "Pre-IELts",
+        classSchedule: "Cập nhật sau",
+        classTime: "Cập nhật sau",
         classDuration: duration,
-        fee: fee1170,
+        fee: fee1000,
         classStartDate: "17/6/2024",
       },
     ],
   },
   {
-    id: 11,
-    class: "Lớp 6 - 10: Pre-IELts",
+    id: 14,
+    class: "Mầm non",
     classInformation: [
       {
-        className: "Pre-IELts",
-        classSchedule: classSchedule246,
-        classTime: classTime1010,
-        classDuration: duration,
-        fee: fee1000,
-        classStartDate: "17/6/2024",
+        className: "Mầm non Hướng Dương",
+        classSchedule: "Thứ 3 - 4 - 6",
+        classTime: "Cập nhật sau",
+        classDuration: duration2,
+        fee: fee220,
+        classStartDate: "18/6/2024",
+      },
+      {
+        className: "Mầm non Tuổi Thơ",
+        classSchedule: "Thứ 2 - 3 - 5",
+        classTime: "Cập nhật sau",
+        classDuration: duration2,
+        fee: fee220,
+        classStartDate: "10/6/2024",
+      },
+      {
+        className: "Mầm non Sen Hồng",
+        classSchedule: "Thứ 2 - 5 - 6",
+        classTime: "Cập nhật sau",
+        classDuration: duration2,
+        fee: fee220,
+        classStartDate: "10/6/2024",
       },
     ],
   },
