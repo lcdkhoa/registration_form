@@ -195,7 +195,7 @@ const ClassTables = [
     class: "Lớp 5 - 8: Luyện thi KET - PET",
     classInformation: [
       {
-        className: "Luyện thi KET 1",
+        className: "Luyện thi KET",
         classSchedule: classSchedule246,
         classTime: classTime800,
         classDuration: duration,
@@ -206,10 +206,10 @@ const ClassTables = [
   },
   {
     id: 13,
-    class: "Lớp 6 - 10: Pre-IELts",
+    class: "Lớp 6 - 10: Pre-IELTS",
     classInformation: [
       {
-        className: "Pre-IELts",
+        className: "Pre-IELTS",
         classSchedule: "",
         classTime: "",
         classDuration: duration,
