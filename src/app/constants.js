@@ -195,7 +195,7 @@ const ClassTables = [
     class: "Lớp 5 - 8",
     classInformation: [
       {
-        className: "Luyện thi KET",
+        className: "Luyện thi KET - PET",
         classSchedule: classSchedule246,
         classTime: classTime800,
         classDuration: duration,
